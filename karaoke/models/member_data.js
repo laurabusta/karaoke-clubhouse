@@ -10,6 +10,7 @@ const songSchema = new mongoose.Schema({
 const memberSchema = new mongoose.Schema({
     name:  { type: String, required: true },
     nickname:  { type: String, required: true },
+    img: { type: String, required: true },
     city: { type: String, required: true },
     faveGenre: { type: String, required: true },
     drinkOrder: { type: String, required: true },

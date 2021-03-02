@@ -9,6 +9,8 @@ const port = 3000;
 const databaseName = 'karaokeDb'; // name of mongoose database
 
 // MIDDLEWARE
+app.use(express.json()); // body-parser
+app.use(express.urlencoded({extended: true})); // body-parser
 app.use(express.static('public')); //tells express to try to match requests with files in the directory called 'public'
 
 // DATABASE
@@ -16,12 +18,14 @@ mongoose.connect('mongodb://localhost:27017/', { dbName: databaseName }, { useNe
 mongoose.connection.once('open', ()=> {
     console.log('Karaoke Clubhouse connected to mongo'); // this is a test line that tells us that it connected successfully
 });
+const seedMemberData = require('./models/seed_data.js');
 
 // ROUTES 
 
 // root --> http://localhost:3000/
 app.get('/', (req, res) => { // this is what the app sends when it is requested
-    res.send('Hello World! Karaoke Clubhouse App is up and running.');
+    // res.send('Hello World! Karaoke Clubhouse App is up and running.');
+    res.send(seedMemberData);
 });
 
 // index --> http://localhost:3000/lobby
