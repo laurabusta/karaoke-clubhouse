@@ -32,13 +32,26 @@ app.get('/', (req, res) => { // this is what the app sends when it is requested
 // this is the clubhouse lobby where you can see a list of all club members
 app.get('/lobby', (req, res) => { // app sends lobby.ejs html render when accessing /lobby
     // res.send('Hello World! This is Karaoke Clubhouse Lobby!') // use to test before testing .ejs render;
-    res.render('lobby.ejs');
+    Member.find({}, (error, members) => {
+        res.render('lobby.ejs', {
+            allMembers: members
+        })
+    })
 });
 
 // create --> new member post route
-app.post('/lobby/', (req, res)=>{
+app.post('/lobby', (req, res)=>{
     // add any data handling needed to change post data to match database schema
     Member.create(req.body, (error, createdData)=>{
+        res.send(createdData);
+    });
+});
+
+// create --> seed member data
+app.get('/lobby/seed', (req, res)=>{
+    // add any data handling needed to change post data to match database schema
+    Member.create(seedMemberData, (error, createdData)=>{
+        console.log(createdData);
         res.send(createdData);
     });
 });
