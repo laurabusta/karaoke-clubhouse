@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/app.css"> 
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Member to Your Clubhouse</h1>
+        <!-- button to go back to the lobby page -->
+        <button onclick="location.href='/lobby'">Back to Lobby</button>
+        <!-- form for new member data -->
+        <form action="/lobby" method="POST">
+            <!-- name text input -->
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" name="name">
+            </div>
+            <!-- nickname text input -->
+            <div>
+                <label for="nickname">Nickname:</label>
+                <input type="text" name="nickname">
+            </div>
+            <!-- img link text input -->
+            <div>
+                <label for="img">Image URL:</label>
+                <input type="text" name="img">
+            </div>
+            <!-- city text input -->
+            <div>
+                <label for="city">City, State:</label>
+                <input type="text" name="city">
+            </div>
+            <!-- favorite genre text input -->
+            <div>
+                <label for="faveGenre">Favorite Genre:</label>
+                <input type="text" name="faveGenre">
+            </div>
+            <!-- drink order text input -->
+            <div>
+                <label for="drinkOrder">Drink Order:</label>
+                <input type="text" name="drinkOrder">
+            </div>
+            <!-- form submit button -->
+            <input type="submit" value ="Register New Member">
+        </form>
+    </div>
+</body>
+</html>

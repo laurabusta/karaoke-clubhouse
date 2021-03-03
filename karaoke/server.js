@@ -42,9 +42,11 @@ app.get('/lobby', (req, res) => { // app sends lobby.ejs html render when access
 // create --> new member post route
 app.post('/lobby', (req, res)=>{
     // add any data handling needed to change post data to match database schema
-    Member.create(req.body, (error, createdData)=>{
-        res.send(createdData);
-    });
+    console.log('this is new member post route');
+    console.log(req.body);
+    // Member.create(req.body, (error, createdData)=>{
+    //     res.send(createdData);
+    // });
 });
 
 // create --> seed member data
@@ -54,6 +56,12 @@ app.get('/lobby/seed', (req, res)=>{
         console.log(createdData);
         res.send(createdData);
     });
+});
+
+// new
+app.get('/lobby/new', (req, res) => { // this renders the page to add enter data for a new member
+    // res.send('Hello World! This is Karaoke Clubhouse add new member to database');
+    res.render('new_member.ejs');
 });
 
 // show --> access member profile using db ObjectId
