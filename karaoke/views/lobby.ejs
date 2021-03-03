@@ -19,7 +19,7 @@
             <% for (let i=0; i<allMembers.length; i++) { %>
             <tr>
                 <td>
-                    <a href='/lobby'>
+                    <a href='/lobby/<%= allMembers[i].id %>''>
                         <%= allMembers[i].name %>
                     </a>
                 </td>

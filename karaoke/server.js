@@ -56,6 +56,16 @@ app.get('/lobby/seed', (req, res)=>{
     });
 });
 
+// show --> access member profile using db ObjectId
+app.get('/lobby/:id', (req, res)=>{
+    Member.findById(req.params.id, (err, foundMember)=>{
+        // res.send(foundMember);
+        res.render('profile.ejs', {
+            member: foundMember
+        });
+    });
+});
+
 // LISTENER, express is listening to port 3000
 app.listen(port, () => {
     console.log('Karaoke Clubhouse server is listening for requests');
