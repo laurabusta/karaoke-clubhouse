@@ -84,6 +84,25 @@ app.delete('/lobby/:id', (req, res)=>{
     });
 });
 
+// update
+app.put('/lobby/:id', (req, res)=>{
+    console.log(req.body);
+    Member.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel)=>{
+        res.redirect(`/lobby/${req.params.id}`);
+    });
+});
+
+// edit
+app.get('/lobby/:id/edit', (req, res) => {
+    // res.render('edit_member.ejs');
+    Member.findById(req.params.id, (err, foundMember)=>{
+        // res.send(foundMember);
+        res.render('edit_member.ejs', {
+            member: foundMember
+        });
+    });
+})
+
 // LISTENER, express is listening to port 3000
 app.listen(port, () => {
     console.log('Karaoke Clubhouse server is listening for requests');
