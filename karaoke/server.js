@@ -101,7 +101,26 @@ app.get('/lobby/:id/edit', (req, res) => {
             member: foundMember
         });
     });
-})
+});
+
+// new song
+app.get('/lobby/:id/new', (req, res) => { // this renders the page to add enter data for a new member
+    // res.send('Hello World! This is Karaoke Clubhouse add new member to database');
+    Member.findById(req.params.id, (err, foundMember)=>{
+        // res.send(foundMember);
+        res.render('new_song.ejs', {
+            member: foundMember
+        });
+    });
+});
+
+// update
+app.put('/lobby/:id/song', (req, res)=>{
+    console.log(req.body);
+    Member.findByIdAndUpdate(req.params.id, { $push: { songList:req.body } }, {new:true}, (err, updatedModel)=>{
+        res.redirect(`/lobby/${req.params.id}`);
+    });
+});
 
 // LISTENER, express is listening to port 3000
 app.listen(port, () => {

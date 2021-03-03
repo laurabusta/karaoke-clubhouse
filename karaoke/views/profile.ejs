@@ -29,6 +29,25 @@
         <h2><%= member.nickname %>'s Greatest Hits</h2>
         <!-- ADD SONG BUTTON -->
         <button onclick="location.href='/lobby/<%= member.id %>/new'">Add Song</button>
+        <!-- SONG TABLE -->
+        <table>
+            <tr>
+                <th>artist</th>
+                <th>title</th>
+                <th>genre</th>
+                <th>songId</th>
+            </tr>
+            <% for (let i=0; i<member.songList.length; i++) { %>
+                <tr>
+                    <td><%= member.songList[i].artist %></td>
+                    <td><%= member.songList[i].title %></td>
+                    <td><%= member.songList[i].genre %></td>
+                    <td><%= member.songList[i].songId %></td>
+                    <td><a href="/lobby">edit</a></td>
+                    <td><a href="/lobby">delete</a></td>
+                </tr>
+            <% }; %>
+        </table>
     </div> 
 </body>
 </html>

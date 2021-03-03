@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const songSchema = new mongoose.Schema({
-    artist: { type: String, required: true },
-    title: { type: String, required: true },
-    genre: { type: String, required: true },
-    songId: { type: String, required: true }
-});
+// const songSchema = new mongoose.Schema({
+//     artist: { type: String, required: true },
+//     title: { type: String, required: true },
+//     genre: { type: String, required: true },
+//     songId: { type: String, required: false }
+// });
 
 const memberSchema = new mongoose.Schema({
     name:  { type: String, required: true },
@@ -14,7 +14,12 @@ const memberSchema = new mongoose.Schema({
     city: { type: String, required: true },
     faveGenre: { type: String, required: true },
     drinkOrder: { type: String, required: true },
-    songList: [songSchema] // set default to empty string?
+    songList: [{
+        artist: { type: String, required: true },
+        title: { type: String, required: true },
+        genre: { type: String, required: true },
+        songId: { type: String, required: false }
+    }] // set default to empty string?
 });
 
 const Member = mongoose.model('Member', memberSchema);
