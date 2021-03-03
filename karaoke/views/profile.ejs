@@ -12,13 +12,23 @@
         <h1>Karaoke Clubhouse Member Profile</h1>
         <!-- BACK TO LOBBY BUTTON -->
         <button onclick="location.href='/lobby'">Back to Lobby</button>
-        <p>Name: <%= member.name %></p>
+        <!-- PROFILE INFO -->
+        <div>Name: <%= member.name %></div>
+        <div>Nickname: "<%= member.nickname %>"</div>
+        <div>City: <%= member.city %></div>
+        <div>Favorite Genre: <%= member.faveGenre %></div>
+        <div>Drink Order: <%= member.drinkOrder %></div>
+        <img src="<%= member.img %>" alt="<%= member.nickname %>" width="200" height="200" style="display:block">
         <!-- EDIT PROFILE BUTTON -->
         <button onclick="location.href='/lobby/<%= member.id %>/edit'">EDIT Profile</button>
         <!-- DELETE PROFILE BUTTON -->
         <form action="/lobby/<%= member.id %>?_method=DELETE" method="POST">
             <input type="submit" value="DELETE Profile">
         </form>
+        <!-- SONG LIST SECTION , alternate name: Karaoke Jukebox -->
+        <h2><%= member.nickname %>'s Greatest Hits</h2>
+        <!-- ADD SONG BUTTON -->
+        <button onclick="location.href='/lobby/<%= member.id %>/new'">Add Song</button>
     </div> 
 </body>
 </html>
