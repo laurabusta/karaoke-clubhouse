@@ -44,17 +44,17 @@ app.post('/lobby', (req, res)=>{
     // add any data handling needed to change post data to match database schema
     console.log('this is new member post route');
     console.log(req.body);
-    // Member.create(req.body, (error, createdData)=>{
-    //     res.send(createdData);
-    // });
+    Member.create(req.body, (error, createdMember)=>{
+        res.redirect('/lobby');
+    });
 });
 
 // create --> seed member data
 app.get('/lobby/seed', (req, res)=>{
     // add any data handling needed to change post data to match database schema
-    Member.create(seedMemberData, (error, createdData)=>{
-        console.log(createdData);
-        res.send(createdData);
+    Member.create(seedMemberData, (error, createdMember)=>{
+        console.log(createdMember);
+        res.send(createdMember);
     });
 });
 
@@ -62,6 +62,7 @@ app.get('/lobby/seed', (req, res)=>{
 app.get('/lobby/new', (req, res) => { // this renders the page to add enter data for a new member
     // res.send('Hello World! This is Karaoke Clubhouse add new member to database');
     res.render('new_member.ejs');
+
 });
 
 // show --> access member profile using db ObjectId
