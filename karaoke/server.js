@@ -1,6 +1,7 @@
 // DEPENDENCIES
 const express = require('express'); // import express web framework for node.js
 const mongoose = require('mongoose'); // import to use mongoose db
+const methodOverride = require('method-override');
 const Member = require('./models/member_data.js');
 
 // CONFIGURATION
@@ -11,6 +12,7 @@ const databaseName = 'karaokeDb'; // name of mongoose database
 // MIDDLEWARE
 app.use(express.json()); // body-parser
 app.use(express.urlencoded({extended: true})); // body-parser
+app.use(methodOverride('_method')); // method overrride adds ability for additional form methods (DELETE)
 app.use(express.static('public')); //tells express to try to match requests with files in the directory called 'public'
 
 // DATABASE
@@ -72,6 +74,13 @@ app.get('/lobby/:id', (req, res)=>{
         res.render('profile.ejs', {
             member: foundMember
         });
+    });
+});
+
+// destroy --> delete member profile
+app.delete('/lobby/:id', (req, res)=>{
+    Member.findByIdAndRemove(req.params.id, (err, data)=>{
+        res.redirect('/lobby');//redirect back to index
     });
 });
 
