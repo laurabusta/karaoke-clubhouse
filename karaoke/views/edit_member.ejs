@@ -9,9 +9,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Edit Karaoke Clubhouse Member Profile</h1>
+        <h1>Edit Member Profile</h1>
         <!-- BUTTON - Back to profile page-->
-        <button onclick="location.href='/lobby/<%= member.id %>'">Back to Profile</button>
+        <button onclick="location.href='/lobby/<%= member.id %>'" class="button-nav">Back to Profile</button>
         <!-- form to edit member profiledata -->
         <form action="/lobby/<%= member.id %>?_method=PUT" method="POST" class="form-page">
             <!-- name text input -->
@@ -45,7 +45,7 @@
                 <input type="text" name="drinkOrder" value="<%= member.drinkOrder %>">
             </div>
             <!-- form submit button -->
-            <input type="submit" value ="Update Member Profile" class="button-submit">
+            <input type="submit" value ="Update Profile" class="button-submit">
         </form>
     </div>
     

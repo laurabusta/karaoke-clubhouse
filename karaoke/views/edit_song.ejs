@@ -11,7 +11,7 @@
     <div class="container">
         <h1>Edit This Groovy Tune</h1>
         <!-- BACK TO PROFILE BUTTON, would prefer this to be a close button -->
-        <button onclick="location.href='/lobby/<%= member.id %>'">Back to Profile</button>
+        <button onclick="location.href='/lobby/<%= member.id %>'" class="button-nav">Back to Profile</button>
         <!-- form for new song data -->
         <form action="/song/<%= song.id %>/<%= member.id %>?_method=PUT" method="POST" class="form-page">
             <!-- artist text input -->
