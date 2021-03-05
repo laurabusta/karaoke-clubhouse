@@ -13,7 +13,7 @@
         <!-- BACK TO PROFILE BUTTON, would prefer this to be a close button -->
         <button onclick="location.href='/lobby/<%= member.id %>'">Back to Profile</button>
         <!-- form for new song data -->
-        <form action="/song/<%= song.id %>/<%= member.id %>?_method=PUT" method="POST">
+        <form action="/song/<%= song.id %>/<%= member.id %>?_method=PUT" method="POST" class="form-page">
             <!-- artist text input -->
             <div>
                 <label for="artist">Artist:</label>
@@ -35,7 +35,7 @@
                 <input type="text" name="songId" value="<%= song.songId %>">
             </div>
             <!-- form submit button -->
-            <input type="submit" value ="Update Song">
+            <input type="submit" value ="Update Song" class="button-submit">
         </form>
     </div>
 </body>

@@ -13,7 +13,7 @@
         <!-- BUTTON - Back to profile page-->
         <button onclick="location.href='/lobby/<%= member.id %>'">Back to Profile</button>
         <!-- form to edit member profiledata -->
-        <form action="/lobby/<%= member.id %>?_method=PUT" method="POST">
+        <form action="/lobby/<%= member.id %>?_method=PUT" method="POST" class="form-page">
             <!-- name text input -->
             <div>
                 <label for="name">Name:</label>
@@ -45,7 +45,7 @@
                 <input type="text" name="drinkOrder" value="<%= member.drinkOrder %>">
             </div>
             <!-- form submit button -->
-            <input type="submit" value ="Update Member Profile">
+            <input type="submit" value ="Update Member Profile" class="button-submit">
         </form>
     </div>
     

@@ -11,32 +11,32 @@
     <div class="container">
         <h1>Add New Song to Your Greatest Hits!</h1>
         <!-- BACK TO PROFILE BUTTON -->
-        <button onclick="location.href='/lobby/<%= member.id %>'">Back to Profile</button>
+        <button onclick="location.href='/lobby/<%= member.id %>'" class="button-nav">Back to Profile</button>
         <!-- form for new member data -->
         <!-- <form action="/lobby/<%= member.id %>/song?_method=PUT" method="POST"> -->
-        <form action="/lobby/<%= member.id %>" method="POST">
+        <form action="/lobby/<%= member.id %>" method="POST" class="form-page">
             <!-- artist text input -->
             <div>
-                <label for="artist">Artist:</label>
-                <input type="text" name="artist">
+                <!-- <label for="artist">Artist:</label> -->
+                <input type="text" name="artist" placeholder="Artist">
             </div>
             <!-- title text input -->
             <div>
-                <label for="title">Title:</label>
-                <input type="text" name="title">
+                <!-- <label for="title">Title:</label> -->
+                <input type="text" name="title" placeholder="Title">
             </div>
             <!-- genre text input -->
             <div>
-                <label for="genre">Genre:</label>
-                <input type="text" name="genre">
+                <!-- <label for="genre">Genre:</label> -->
+                <input type="text" name="genre" placeholder="Genre">
             </div>
             <!-- songId text input -->
             <div>
-                <label for="songId">Song ID:</label>
-                <input type="text" name="songId">
+                <!-- <label for="songId">Song ID:</label> -->
+                <input type="text" name="songId" placeholder="Song ID">
             </div>
             <!-- form submit button -->
-            <input type="submit" value ="Add New Song">
+            <input type="submit" value ="SUBMIT" class="button-submit">
         </form>
     </div>
 </body>
