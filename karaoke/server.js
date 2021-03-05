@@ -136,7 +136,7 @@ app.put('/lobby/:id/:song_id', (req, res) => {
 });
 
 // create --> new song post route
-app.post('/:id/song/', (req, res)=>{
+app.post('/lobby/:id', (req, res)=>{
     // add any data handling needed to change post data to match database schema
     console.log('this is new song post route');
     console.log(req.body);
@@ -148,6 +148,19 @@ app.post('/:id/song/', (req, res)=>{
             (err, updatedModel) => {
                 console.log(updatedModel);
                 res.redirect(`/lobby/${req.params.id}`);
+        });
+    });
+});
+
+// edit --> edit song fields
+app.get('/song/:song_id/:id', (req, res) => {
+    Song.findById(req.params.song_id, (err, foundSong)=>{
+        // res.send(foundSong);
+        Member.findById(req.params.id, (err, foundMember) => {
+            res.render('edit_song.ejs', {
+                member: foundMember,
+                song: foundSong
+            });
         });
     });
 });

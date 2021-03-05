@@ -5,20 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/app.css"> 
-    <title>Add New Song</title>
+    <title>Edit Song</title>
 </head>
 <body>
     <div class="container">
-        <h1>Add New Song to Your Greatest Hits!</h1>
-        <!-- BACK TO PROFILE BUTTON -->
+        <h1>Edit This Groovy Tune</h1>
+        <!-- BACK TO PROFILE BUTTON, would prefer this to be a close button -->
         <button onclick="location.href='/lobby/<%= member.id %>'">Back to Profile</button>
         <!-- form for new member data -->
         <!-- <form action="/lobby/<%= member.id %>/song?_method=PUT" method="POST"> -->
-        <form action="/lobby/<%= member.id %>" method="POST">
+        <form action="/song/<%= song.id %>" method="POST">
             <!-- artist text input -->
             <div>
                 <label for="artist">Artist:</label>
-                <input type="text" name="artist">
+                <input type="text" name="artist" value="">
             </div>
             <!-- title text input -->
             <div>
@@ -36,7 +36,7 @@
                 <input type="text" name="songId">
             </div>
             <!-- form submit button -->
-            <input type="submit" value ="Add New Song">
+            <input type="submit" value ="Update Song">
         </form>
     </div>
 </body>

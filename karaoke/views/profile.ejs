@@ -46,7 +46,7 @@
                     <td><%= allSongs[i].genre %></td>
                     <td><%= allSongs[i].songId %></td>
                     <td>
-                        <form action="/song/<%= allSongs[i].id %>?_method=PUT" method="POST">
+                        <form action="/song/<%= allSongs[i].id %>/<%= member.id %>">
                             <input type="submit" value="EDIT">
                         </form>
                     </td>
