@@ -36,15 +36,25 @@
                 <th>title</th>
                 <th>genre</th>
                 <th>songId</th>
+                <th>edit</th>
+                <th>delete</th>
             </tr>
-            <% for (let i=0; i<member.songList.length; i++) { %>
+            <% for (let i=0; i<allSongs.length; i++) { %>
                 <tr>
-                    <td><%= member.songList[i].artist %></td>
-                    <td><%= member.songList[i].title %></td>
-                    <td><%= member.songList[i].genre %></td>
-                    <td><%= member.songList[i].songId %></td>
-                    <td><a href="/lobby">edit</a></td>
-                    <td><a href="/lobby">delete</a></td>
+                    <td><%= allSongs[i].artist %></td>
+                    <td><%= allSongs[i].title %></td>
+                    <td><%= allSongs[i].genre %></td>
+                    <td><%= allSongs[i].songId %></td>
+                    <td>
+                        <form action="/song/<%= allSongs[i].id %>?_method=PUT" method="POST">
+                            <input type="submit" value="EDIT">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/lobby/<%= member.id %>/<%= allSongs[i].id %>?_method=PUT" method="POST">
+                            <input type="submit" value="DELETE">
+                        </form>
+                    </td>
                 </tr>
             <% }; %>
         </table>

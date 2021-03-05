@@ -2,7 +2,8 @@
 const express = require('express'); // import express web framework for node.js
 const mongoose = require('mongoose'); // import to use mongoose db
 const methodOverride = require('method-override');
-const Member = require('./models/member_data.js');
+const Member = require('./models/member_schema.js');
+const Song = require('./models/song_schema.js');
 
 // CONFIGURATION
 const app = express(); // create a shorthand for the express functions;
@@ -60,19 +61,25 @@ app.get('/lobby/seed', (req, res)=>{
     });
 });
 
-// new
+// new --> new member profile
 app.get('/lobby/new', (req, res) => { // this renders the page to add enter data for a new member
     // res.send('Hello World! This is Karaoke Clubhouse add new member to database');
     res.render('new_member.ejs');
 
 });
 
-// show --> access member profile using db ObjectId
-app.get('/lobby/:id', (req, res)=>{
+// show --> access member profile using db ObjectId for member
+app.get('/lobby/:id', (req, res) => {
     Member.findById(req.params.id, (err, foundMember)=>{
         // res.send(foundMember);
-        res.render('profile.ejs', {
-            member: foundMember
+        // console.log(foundMember.songList);
+        // find all the songs in database on this member's songList
+        Song.find({ _id: foundMember.songList }, (err, foundSongs) => {
+            console.log(foundSongs);
+            res.render('profile.ejs', {
+                member: foundMember,
+                allSongs: foundSongs
+            });
         });
     });
 });
@@ -92,7 +99,7 @@ app.put('/lobby/:id', (req, res)=>{
     });
 });
 
-// edit
+// edit member profile
 app.get('/lobby/:id/edit', (req, res) => {
     // res.render('edit_member.ejs');
     Member.findById(req.params.id, (err, foundMember)=>{
@@ -103,7 +110,7 @@ app.get('/lobby/:id/edit', (req, res) => {
     });
 });
 
-// new song
+// new song form page
 app.get('/lobby/:id/new', (req, res) => { // this renders the page to add enter data for a new member
     // res.send('Hello World! This is Karaoke Clubhouse add new member to database');
     Member.findById(req.params.id, (err, foundMember)=>{
@@ -114,11 +121,34 @@ app.get('/lobby/:id/new', (req, res) => { // this renders the page to add enter 
     });
 });
 
-// update
-app.put('/lobby/:id/song', (req, res)=>{
+// destroy --> delete song
+app.put('/lobby/:id/:song_id', (req, res) => {
+    // remove song from song database
+    Song.findByIdAndRemove(req.params.song_id, (err, data) => {
+        // remove song from member's song list
+        Member.findByIdAndUpdate( req.params.id, 
+        { $pull: { songList: req.params.song_id } }, 
+        (err, updatedModel) => {
+            console.log(updatedModel, req.params.song_id);
+            res.redirect(`/lobby/${req.params.id}`);
+        });       
+    });
+});
+
+// create --> new song post route
+app.post('/:id/song/', (req, res)=>{
+    // add any data handling needed to change post data to match database schema
+    console.log('this is new song post route');
     console.log(req.body);
-    Member.findByIdAndUpdate(req.params.id, { $push: { songList:req.body } }, {new:true}, (err, updatedModel)=>{
-        res.redirect(`/lobby/${req.params.id}`);
+    Song.create(req.body, (error, createdSong)=>{
+        console.log(createdSong);
+        Member.findByIdAndUpdate(
+            req.params.id, 
+            { $push: { songList: createdSong.id } }, 
+            (err, updatedModel) => {
+                console.log(updatedModel);
+                res.redirect(`/lobby/${req.params.id}`);
+        });
     });
 });
 

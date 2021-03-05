@@ -12,7 +12,8 @@
         <!-- BACK TO PROFILE BUTTON -->
         <button onclick="location.href='/lobby/<%= member.id %>'">Back to Profile</button>
         <!-- form for new member data -->
-        <form action="/lobby/<%= member.id %>/song?_method=PUT" method="POST">
+        <!-- <form action="/lobby/<%= member.id %>/song?_method=PUT" method="POST"> -->
+        <form action="/<%= member.id %>/song" method="POST">
             <!-- artist text input -->
             <div>
                 <label for="artist">Artist:</label>
