@@ -91,7 +91,7 @@ app.delete('/lobby/:id', (req, res)=>{
     });
 });
 
-// update
+// update --> update member profile fields from edit page
 app.put('/lobby/:id', (req, res)=>{
     console.log(req.body);
     Member.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel)=>{
@@ -162,6 +162,14 @@ app.get('/song/:song_id/:id', (req, res) => {
                 song: foundSong
             });
         });
+    });
+});
+
+// update --> update song fields from edit song page
+app.put('/song/:song_id/:id', (req, res ) => {
+    console.log(req.body);
+    Song.findByIdAndUpdate(req.params.song_id, req.body, {new:true}, (err, updatedModel)=>{
+        res.redirect(`/lobby/${req.params.id}`);
     });
 });
 

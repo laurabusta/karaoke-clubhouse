@@ -12,28 +12,27 @@
         <h1>Edit This Groovy Tune</h1>
         <!-- BACK TO PROFILE BUTTON, would prefer this to be a close button -->
         <button onclick="location.href='/lobby/<%= member.id %>'">Back to Profile</button>
-        <!-- form for new member data -->
-        <!-- <form action="/lobby/<%= member.id %>/song?_method=PUT" method="POST"> -->
-        <form action="/song/<%= song.id %>" method="POST">
+        <!-- form for new song data -->
+        <form action="/song/<%= song.id %>/<%= member.id %>?_method=PUT" method="POST">
             <!-- artist text input -->
             <div>
                 <label for="artist">Artist:</label>
-                <input type="text" name="artist" value="">
+                <input type="text" name="artist" value="<%= song.artist %>">
             </div>
             <!-- title text input -->
             <div>
                 <label for="title">Title:</label>
-                <input type="text" name="title">
+                <input type="text" name="title" value="<%= song.title %>">
             </div>
             <!-- genre text input -->
             <div>
                 <label for="genre">Genre:</label>
-                <input type="text" name="genre">
+                <input type="text" name="genre" value="<%= song.genre %>">
             </div>
             <!-- songId text input -->
             <div>
                 <label for="songId">Song ID:</label>
-                <input type="text" name="songId">
+                <input type="text" name="songId" value="<%= song.songId %>">
             </div>
             <!-- form submit button -->
             <input type="submit" value ="Update Song">

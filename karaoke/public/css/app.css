@@ -1,3 +1,23 @@
 body {
     background-color: dodgerblue;
 }
+
+th, td {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+input[type=text] {
+    width: 200px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 0;
+    border-radius: 10px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
